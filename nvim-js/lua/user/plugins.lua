@@ -72,7 +72,7 @@ require("lazy").setup({
   { 'windwp/nvim-autopairs', config = true },
 
   -- Add smooth scrolling to avoid jarring jumps
-  { 'karb94/neoscroll.nvim', config = true },
+  { 'karb94/neoscroll.nvim', opts = { easing_function = "cubic" } },
 
   -- delete buffer without closing the window
   {
@@ -175,8 +175,23 @@ require("lazy").setup({
   -- Improved syntax highlighting
   { import = 'user.plugins.treesitter' },
 
-  -- @TODO add dashboard to nvim-enhanced
-  -- { import = 'user.plugins.dashboard-nvim' },
+  -- Language Server Protocol.
+  { import = 'user.plugins.lspconfig' },
+
+  -- Decent typescript LS
+  { import = 'user.plugins.typescript-tools' },
+
+  -- type checker
+  { "dmmulroy/tsc.nvim", event = 'VeryLazy', opts = { flags = { watch= true } } },
+
+  -- Completion
+  { import = 'user.plugins.cmp' },
+
+  -- vscode-like pictograms to neovim built-in lsp
+  { "onsails/lspkind-nvim" },
+
+  -- Auto add/remove backticks when adding/removing template strings
+  { "axelvc/template-string.nvim", event = "InsertEnter", ft = { "javascript", "typescript", "javascriptreact", "typescriptreact", }, config = true, },
 
 }, {
   checker = {
