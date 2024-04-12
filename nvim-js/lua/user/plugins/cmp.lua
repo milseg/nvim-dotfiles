@@ -6,17 +6,30 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-calc",
     -- 'hrsh7th/cmp-copilot',
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
     'onsails/lspkind-nvim',
+    {
+      "David-Kunz/cmp-npm",
+      opts = {
+        ignore = {},
+        only_semantic_versions = true,
+      },
+    },
+    "petertriho/cmp-git",
   },
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     local lspkind = require('lspkind')
+    local types = require("cmp.types")
 
+    require("cmp_git").setup()
     require('luasnip/loaders/from_snipmate').lazy_load()
+
 
     local has_words_before = function()
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -24,18 +37,61 @@ return {
     end
 
     local source_map = {
+      npm = "NPM",
+      Codeium = "Codeium"
       buffer = "Buffer",
       nvim_lsp = "LSP",
       nvim_lsp_signature_help = "Signature",
       luasnip = "LuaSnip",
       nvim_lua = "Lua",
       path = "Path",
+      calc = "Calculator",
       copilot = "Copilot",
     }
 
     local function ltrim(s)
       return s:match'^%s*(.*)'
     end
+
+    local buffer_option = {
+      -- Complete from all visible buffers (splits)
+      get_bufnrs = function()
+        local bufs = {}
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          bufs[vim.api.nvim_win_get_buf(win)] = true
+        end
+        return vim.tbl_keys(bufs)
+      end,
+    }
+
+    local function limit_lsp_types(entry, ctx)
+      local kind = entry:get_kind()
+      local line = ctx.cursor.line
+      local col = ctx.cursor.col
+      local char_before_cursor = string.sub(line, col - 1, col - 1)
+      local char_after_dot = string.sub(line, col, col)
+
+      if char_before_cursor == "." and char_after_dot:match("[a-zA-Z]") then
+        if
+            kind == types.lsp.CompletionItemKind.Method
+            or kind == types.lsp.CompletionItemKind.Field
+            or kind == types.lsp.CompletionItemKind.Property
+        then
+          return true
+        else
+          return false
+        end
+      elseif string.match(line, "^%s+%w+$") then
+        if kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable then
+          return true
+        else
+          return false
+        end
+      end
+
+      return true
+    end
+
 
     cmp.setup({
       preselect = false,
@@ -106,16 +162,44 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
       },
       sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip' },
-        -- { name = 'copilot' },
-        { name = 'buffer' },
-        { name = 'path' },
+        { 
+          name = 'nvim_lsp',
+          priority = 10,
+          -- Limits LSP results to specific types based on line context (Fields, Methods, Variables)
+          entry_filter = limit_lsp_types,
+        },
+        { 
+          name = 'nvim_lsp_signature_help',
+          priority = 10,
+        },
+        { name = "npm", priority = 9 },
+        { name = "codeium", priority = 9 },
+        { name = "git", priority = 7 },
+        {
+          name = 'luasnip',
+          priority = 7,
+          max_item_count = 5,
+        },
+        { 
+          name = 'buffer', 
+          priority = 4,
+          keyword_length = 5,
+          max_item_count = 10,
+          option = buffer_option,
+        },
+        { name = 'path', priority = 4 },
+        { name = 'calc', priority = 3 },
       },
       experimental = {
         -- ghost_text = true,
       },
+    })
+
+    cmp.setup.cmdline('/', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
     })
   end,
 }

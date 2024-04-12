@@ -178,7 +178,7 @@ require("lazy").setup({
   -- Language Server Protocol.
   { import = 'user.plugins.lspconfig' },
 
-  -- Decent typescript LS
+  -- Decent typescript Language Server
   { import = 'user.plugins.typescript-tools' },
 
   -- type checker
@@ -190,8 +190,37 @@ require("lazy").setup({
   -- vscode-like pictograms to neovim built-in lsp
   { "onsails/lspkind-nvim" },
 
+  -- hex code colorizer
+  { 'NvChad/nvim-colorizer.lua', opts = { user_default_options = { names = false, } }, },
+
+  -- highlight occurrences of the word under the cursor
+  { 
+    'RRethy/vim-illuminate', event = 'VeryLazy', 
+    config = function()
+      require('illuminate').configure({
+        min_count_to_highlight = 2,
+        delay = 1000,
+        providers = { 'lsp' },
+      })
+    end, 
+  },
+
   -- Auto add/remove backticks when adding/removing template strings
   { "axelvc/template-string.nvim", event = "InsertEnter", ft = { "javascript", "typescript", "javascriptreact", "typescriptreact", }, config = true, },
+
+  -- ╭─────────────────────────────────────────────────────────╮
+  -- │ AI                                                      │
+  -- ╰─────────────────────────────────────────────────────────╯
+  {
+    "jcdickinson/codeium.nvim",
+    event = "InsertEnter",
+    cmd = "Codeium",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = true,
+  },
 
 }, {
   checker = {

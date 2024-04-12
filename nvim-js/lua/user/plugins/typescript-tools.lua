@@ -58,7 +58,9 @@ return {
     on_attach = function(client, bufnr)
       if vim.fn.has("nvim-0.10") then
         -- Enable inlay hints
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        if vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(bufnr, true)
+        end
       end
     end,
     handlers = handlers,
