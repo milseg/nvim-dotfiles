@@ -222,6 +222,13 @@ require("lazy").setup({
     config = true,
   },
 
+  {
+    "robitx/gp.nvim",
+    opts = {
+      openai_api_key = require('localenv').openai_api_key
+    },
+  },
+
 }, {
   checker = {
     enabled = true,
