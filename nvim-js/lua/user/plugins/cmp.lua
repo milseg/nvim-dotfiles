@@ -38,7 +38,7 @@ return {
 
     local source_map = {
       npm = "NPM",
-      Codeium = "Codeium"
+      Codeium = "Codeium",
       buffer = "Buffer",
       nvim_lsp = "LSP",
       nvim_lsp_signature_help = "Signature",

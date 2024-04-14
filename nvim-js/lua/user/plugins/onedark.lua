@@ -48,5 +48,12 @@ return {
       highlight link FloatermBorder CursorLineBg
     ]])
 
+    -- hidden list characters highlighting
+    vim.api.nvim_set_hl(0, 'NonText', {
+      fg = '#780000', -- Dark red
+    --  bg = '#00C884'
+    })
+
+
   end,
 }

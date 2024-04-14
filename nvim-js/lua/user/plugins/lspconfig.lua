@@ -47,7 +47,6 @@ return {
             return utils.root_has_file({ '.eslintrc.js' })
           end,
         }),
-        -- null_ls.builtins.diagnostics.phpstan, -- TODO: Only if config file
         null_ls.builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'neo-tree' } }),
         null_ls.builtins.formatting.eslint_d.with({
           condition = function(utils)

@@ -49,3 +49,6 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize -2<CR>')
 vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
 
 
+--- Quick file editions ---
+-- Remove trailing spaces and indent file ---
+vim.keymap.set('n', '<leader>==', ':%s/\\s\\+$//e<CR>ggVG=<C-o>')

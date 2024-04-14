@@ -1,5 +1,5 @@
 -- Aesthetics --
-vim.opt.cmdheight = 0 -- remove cmdline from screenheight when not used
+vim.opt.cmdheight = 1 -- remove cmdline from screenheight when not used
 vim.opt.title = true -- show title
 vim.opt.titlestring = '%f // milseg'
 vim.opt.termguicolors = true

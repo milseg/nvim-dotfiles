@@ -28,7 +28,6 @@ return {
       "json",
       "json5",
       "lua",
-      "markdown",
       "prisma",
       "vim"
     },
