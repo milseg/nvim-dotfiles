@@ -12,13 +12,15 @@ return {
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
     'onsails/lspkind-nvim',
-    {
-      "David-Kunz/cmp-npm",
-      opts = {
-        ignore = {},
-        only_semantic_versions = true,
-      },
-    },
+   -- {
+   --   "David-Kunz/cmp-npm",
+   --   dependencies = { 'nvim-lua/plenary.nvim' },
+   --   ft = "json",
+   --   opts = {
+   --     ignore = {},
+   --     only_semantic_versions = true,
+   --   },
+   -- },
     "petertriho/cmp-git",
   },
   config = function()
@@ -172,7 +174,7 @@ return {
           name = 'nvim_lsp_signature_help',
           priority = 10,
         },
-        { name = "npm", priority = 9 },
+        --{ name = "npm", keyword_length = 4, priority = 9 },
         { name = "codeium", priority = 9 },
         { name = "git", priority = 7 },
         {

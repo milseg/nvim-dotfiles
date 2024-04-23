@@ -1,5 +1,6 @@
 return {
   "robitx/gp.nvim",
+  event = 'VeryLazy',
   keys = {
     { '<Leader>an', ':GpChatNew<CR>'},
     { '<Leader>af', ':GpChatFinder<CR>'},
@@ -7,6 +8,10 @@ return {
     { '<Leader>as', ':GpStop<CR>'},
     { '<Leader>at', ':GpChatToggle<CR>'},
     { '<Leader>aw', ':GpRewrite '}, -- prompts for code rewriting
+    { '<Leader>aa', ':GpAppend '}, -- prompts for code append
+    { '<Leader>ab', ':GpPrepend '}, -- prompts for code prepend
+    { '<Leader>ae', ':GpEnew '}, -- prompts for code in new buffer
+    { '<Leader>ap', ':GpChatPaste '}, -- paste selected text to last chat
   },
   opts = {
     openai_api_key = require('localenv').openai_api_key,
@@ -61,4 +66,11 @@ return {
       },
     }
   },
+  config = function()
+    vim.keymap.set('v', '<Leader>aw', ':GpRewrite ')
+    vim.keymap.set('v', '<Leader>aa', ':GpAppend ')
+    vim.keymap.set('v', '<Leader>ab', ':GpPrepend ')
+    vim.keymap.set('v', '<Leader>ae', ':GpEnew ')
+    vim.keymap.set('v', '<Leader>ap', ':GpChatPaste ')
+  end,
 }

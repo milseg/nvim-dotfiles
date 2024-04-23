@@ -19,7 +19,7 @@ vim.opt.showmode = false -- Dont need to showmode. Our status bar already solves
 
 --ident configuration --
 vim.opt.expandtab = true -- ident by spaces
-vim.opt.shiftwidth = 4 -- amount of spaces used
+vim.opt.shiftwidth = 2 -- amount of spaces used
 vim.opt.tabstop = 4 -- tab character width. In case we come across any
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true -- automatically adds ident after open blocks(e. g. curly braces)
