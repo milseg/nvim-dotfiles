@@ -34,7 +34,7 @@ vim.opt.completeopt = 'menuone,longest,preview'
 
 -- Mouse --
 vim.opt.mouse = 'a' -- enable mouse for all modes
-vim.opt.mousemoveevent = true -- Allow hovering in bufferline
+--vim.opt.mousemoveevent = true -- Allow hovering in bufferline
 
 -- Clipboard --
 vim.opt.clipboard = 'unnamedplus' -- Use system clipboard

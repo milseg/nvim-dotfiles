@@ -16,6 +16,7 @@ return {
         height = 0.8,
       },
     })
+    -- last mason-lspconfig compatible with mason c1a3a6c01777ff5c5c5d91c80f5092621d738a2f
     require('mason-lspconfig').setup({ automatic_installation = true })
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
