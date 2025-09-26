@@ -59,7 +59,8 @@ return {
       if vim.fn.has("nvim-0.10") then
         -- Enable inlay hints
         if vim.lsp.inlay_hint then
-          vim.lsp.inlay_hint.enable(bufnr, true)
+          -- print("[tt] Bufnr type:", type(bufnr))
+          vim.lsp.inlay_hint.enable(true, {bufnr})
         end
       end
     end,

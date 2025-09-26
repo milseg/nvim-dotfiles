@@ -56,6 +56,9 @@ return {
   cmd = 'Neotree',
   keys = {
     { '<leader>n', ':Neotree reveal toggle<CR>' },
+    { 'te', ':Neotree show filesystem left<CR>' },
+    { 'tb',  ':Neotree show buffers left<CR>' },
+    { 'ti', ':Neotree show git_status left<CR>' },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -118,9 +121,7 @@ return {
       mappings = {
         ["<cr>"] = "open_with_window_picker",
         ["<C-z>"] = "close_all_subnodes",
-        ['te'] = "Neotree show filesystem left",
-        ['tb'] = "Neotree show buffers left",
-        ['ti'] = "Neotree show git_status left",
+        
         ["tf"] = "telescope_find",
         ["tg"] = "telescope_grep",
         ["tD"] = "diff_files",

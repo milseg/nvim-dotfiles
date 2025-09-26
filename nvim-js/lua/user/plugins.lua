@@ -200,7 +200,7 @@ require("lazy").setup({
       require('illuminate').configure({
         min_count_to_highlight = 2,
         delay = 1000,
-        providers = { 'lsp' },
+        providers = { 'treesitter', 'regex' },
       })
     end, 
   },
@@ -208,6 +208,7 @@ require("lazy").setup({
   -- Auto add/remove backticks when adding/removing template strings
   { "axelvc/template-string.nvim", event = "InsertEnter", ft = { "javascript", "typescript", "javascriptreact", "typescriptreact", }, config = true, },
 
+  { 'phelipetls/jsonpath.nvim', ft = { 'json', 'jsonc' } },
   -- ╭─────────────────────────────────────────────────────────╮
   -- │ AI                                                      │
   -- ╰─────────────────────────────────────────────────────────╯
