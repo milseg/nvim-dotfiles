@@ -92,6 +92,7 @@ local conf = {
     { 
       name = "CodeGPT3-5",
       provider = "openai",
+      disable = true,
     },
   },
 }
