@@ -1,0 +1,51 @@
+{
+    "window.commandCenter": 1,
+    "keyboard.dispatch": "keyCode",
+    "vim.leader": " ",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "j"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "commands": ["editor.action.moveLinesUpAction"] 
+        },
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohlsearch"]
+        },
+        {
+            "before": ["<leader>", "=", "="],
+            "commands": [
+                "editor.action.formatDocument",
+                "editor.action.trimTrailingWhitespace"
+            ]
+        },
+        {
+            "before": ["leader", "d"],
+            "commands": [
+                "editor.action.copyLinesDownAction"
+            ]
+        },
+        
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "."],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": ["leader", ","],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "editor.lineNumbers": "relative",
+    "vim.commandLineModeKeyBindings": [],
+    "git.blame.editorDecoration.enabled": true,
+    "gitlens.currentLine.enabled": false,
+}
